@@ -2,11 +2,13 @@ import React from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Login = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
+  const navigate = useNavigate();
 
   const [fieldsValid, setFieldsValid] = useState(true);
   const [emailValid, setEmailValid] = useState(true);
@@ -20,17 +22,23 @@ const Login = () => {
         return e;
       }
     });
-    console.log(currentuser);
+
     if (!emailRef.current.value || !passwordRef.current.value) {
       setFieldsValid(false);
       setEmailValid(true);
       setPasswordValid(true);
     } else if (!users?.map((e) => e.email).includes(emailRef.current.value)) {
-      setFieldsValid(false);
+      setFieldsValid(true);
       setEmailValid(false);
       setPasswordValid(true);
     } else if (passwordRef.current.value === currentuser.password) {
-      console.log("jegfiek");
+      localStorage.setItem("loggedIn", true);
+      localStorage.setItem("activeUser", JSON.stringify(currentuser));
+      navigate("/dashboard");
+    } else {
+      setPasswordValid(false);
+      setFieldsValid(true);
+      setEmailValid(true);
     }
   };
 

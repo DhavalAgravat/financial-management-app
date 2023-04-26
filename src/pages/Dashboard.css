@@ -1,0 +1,38 @@
+.content {
+  width: 100vw;
+  margin: 30px;
+}
+
+.profile-banner {
+  background: #fafafa;
+  padding: 6px 15px 6px 7px;
+  border-radius: 20px;
+}
+
+.balance-container {
+  flex-wrap: nowrap;
+}
+
+.balance-box {
+  width: 30%;
+  padding: 40px 15px;
+  display: flex;
+  background: #363a3f;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #929eae;
+  margin-left: 5px;
+}
+
+.icons {
+  font-size: 20px;
+  color: #c8ee44;
+}
+
+.icon-wrapper {
+  background-color: #929eae;
+  padding: 10px;
+  border-radius: 50px;
+}

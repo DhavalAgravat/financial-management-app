@@ -10,9 +10,13 @@ const userSlice = createSlice({
     setUser(state, action) {
       state.users.push(action.payload);
     },
+    addCard(state, action) {
+      const { id, card } = action.payload;
+      state.users[id].cards.push(card);
+    },
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, addCard } = userSlice.actions;
 
 export default userSlice.reducer;

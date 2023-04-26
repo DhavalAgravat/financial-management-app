@@ -1,0 +1,31 @@
+.content {
+  width: 100vw;
+  margin: 30px;
+}
+
+.add-trans-btn {
+  background-color: #c8ee44;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 15px;
+  transition: 0.5s;
+}
+
+.add-trans-btn:hover {
+  color: #c8ee44;
+  background-color: black;
+}
+
+.trans-table {
+  width: 100%;
+}
+
+.trans-table,
+th {
+  /* border: 1px solid black; */
+  color: #929eae;
+}
+
+.trans-table td {
+  color: black;
+}

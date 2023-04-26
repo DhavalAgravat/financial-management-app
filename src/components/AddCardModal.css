@@ -1,0 +1,41 @@
+.modal-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-container {
+  width: 40vw;
+  padding: 60px;
+  background-color: #fafafa;
+  border-radius: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-container label {
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.modal-container input {
+  width: 100%;
+}
+
+.modal-container button {
+  float: right;
+  margin: 20px 0px 0px 15px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(245, 126, 126);
+}
+
+.add-card-btn {
+  background-color: #c8ee44 !important;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Signin.css";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 
 const Signin = () => {
   const users = useSelector((state) => state.users.users);
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
@@ -57,9 +58,15 @@ const Signin = () => {
         username: userName,
         email: email,
         password: password,
+        cards: [],
+        transactions: [],
+        loggedIn: true,
       };
 
       dispatch(setUser(user));
+      localStorage.setItem("loggedIn", true);
+      localStorage.setItem("activeUser", JSON.stringify(user));
+      navigate("/dashboard");
     }
   };
 

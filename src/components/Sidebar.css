@@ -1,0 +1,42 @@
+.sidebar {
+  background-color: #fafafa;
+  width: 25vw;
+  height: 100vh;
+  padding: 10px 20px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* height: 100%; */
+}
+
+.options1 ul li {
+  list-style-type: none;
+}
+
+.nav-link {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #929eae;
+  padding: 14px 81px 14px 15px;
+  border-radius: 10px;
+}
+
+.active {
+  background-color: #c8ee44;
+  color: black;
+}
+
+.log-out-btn {
+  margin: 430px 0px 0px 20px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: red;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+}

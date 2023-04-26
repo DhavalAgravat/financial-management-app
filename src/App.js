@@ -5,6 +5,12 @@ import Signin from "./pages/Signin";
 import { Provider } from "react-redux";
 import store, { persistor } from "./store/store";
 import { PersistGate } from "redux-persist/integration/react";
+import Dashboard from "./pages/Dashboard";
+import Protected from "./components/Protected";
+import { Profiler } from "react";
+import Transactions from "./pages/Transactions";
+import Wallet from "./pages/Wallet";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -15,6 +21,22 @@ function App() {
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/signin" element={<Signin />} />
+              <Route
+                path="/dashboard"
+                element={<Protected Component={Dashboard} />}
+              />
+              <Route
+                path="/transactions"
+                element={<Protected Component={Transactions} />}
+              />
+              <Route
+                path="/wallet"
+                element={<Protected Component={Wallet} />}
+              />
+              <Route
+                path="/profile"
+                element={<Protected Component={Profile} />}
+              />
             </Routes>
           </BrowserRouter>
         </PersistGate>
