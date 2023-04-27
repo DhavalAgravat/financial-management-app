@@ -1,13 +1,14 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./Signin.css";
+import "./styles/Signin.css";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { setUser } from "../store/userSlice";
+import { setUser, setLoggedIn, setActiveUser } from "../store/userSlice";
 import { useDispatch } from "react-redux";
 
 const Signin = () => {
   const users = useSelector((state) => state.users.users);
+  console.log(users);
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -64,23 +65,25 @@ const Signin = () => {
       };
 
       dispatch(setUser(user));
-      localStorage.setItem("loggedIn", true);
-      localStorage.setItem("activeUser", JSON.stringify(user));
+      dispatch(setLoggedIn(true));
+      dispatch(setActiveUser(user));
       navigate("/dashboard");
     }
   };
 
   return (
     <div className="row">
-      <div className="col-6 p-0">
+      <div className="col-5">
         <h1 className="logo"> Bank </h1>
         <section id="signin-container">
           <div>
             <h3 className="welcome-text">Create New Account</h3>
-            <p>Welcome Please Enter Your Deatils</p>
+            <p className="welcome-subheading">
+              Welcome Please Enter Your Deatils
+            </p>
           </div>
-          <form className="mt-4 form-box-signin">
-            <label htmlFor="signin-username" className="form-label">
+          <form className="form-box-signin">
+            <label htmlFor="signin-username" className="form-labels">
               Username
             </label>
             <input
@@ -94,7 +97,7 @@ const Signin = () => {
               userName already exist choose another one
             </p>
 
-            <label htmlFor="signin-email" className="form-label">
+            <label htmlFor="signin-email" className="form-labels">
               Email
             </label>
             <input
@@ -108,7 +111,7 @@ const Signin = () => {
               Please Enter Valid Email
             </p>
 
-            <label htmlFor="signin-password" className="form-label">
+            <label htmlFor="signin-password" className="form-labels">
               Password
             </label>
             <input
@@ -123,16 +126,19 @@ const Signin = () => {
             <p className={`alert-text  ${fieldsValid ? "hidden" : ""}`}>
               All Fields must be filled !
             </p>
+            <button className="create-acc-btn" onClick={signUpHandler}>
+              Create Account
+            </button>
+            <p className="signup-login-link">
+              Alredy have an account ?{" "}
+              <Link to="/" className="link-text">
+                Log In
+              </Link>
+            </p>
           </form>
-          <button className="create-acc-btn" onClick={signUpHandler}>
-            Create Account
-          </button>
-          <p className="signup-link ms-5 mt-3">
-            Alredy have an account ? <Link to="/">Log In</Link>
-          </p>
         </section>
       </div>
-      <div className="col-6 p-0">kk</div>
+      <div className="col-5 p-0">kk</div>
     </div>
   );
 };

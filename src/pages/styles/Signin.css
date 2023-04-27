@@ -4,11 +4,11 @@ body {
 
 #signin-container {
   margin: 123px 177px;
+  margin-top: 24px;
 }
 
 .logo {
-  margin: 50px 177px 0px 177px;
-
+  margin: 50px 177px 108px 177px;
   font-family: "Gordita";
   font-style: normal;
   font-weight: 700;
@@ -18,12 +18,25 @@ body {
 
 .welcome-text {
   font-size: 30px;
+  margin-bottom: 5px;
+}
+
+.welcome-subheading {
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+
+  color: #78778b;
 }
 
 .signin-inputs {
   padding: 15px 25px 16px 20px;
-  width: 404px;
-  height: 48px;
+  width: 82%;
+  border: 1px solid #f2f2f2;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }
 
 .form-box-signin {
@@ -31,11 +44,13 @@ body {
 }
 
 .create-acc-btn {
-  margin-top: 10px;
-  width: 404px;
+  margin-top: 20px;
+  width: 95%;
   background: #c8ee44;
   border-radius: 10px;
-  padding: 14px 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 25px 15px 20px;
   border: none;
 }
 

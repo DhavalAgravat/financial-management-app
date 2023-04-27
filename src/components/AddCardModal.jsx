@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import "./AddCardModal.css";
+import "./styles/AddCardModal.css";
 import { useSelector } from "react-redux";
 import { addCard } from "../store/userSlice";
 import { useDispatch } from "react-redux";
@@ -15,7 +15,8 @@ const AddCardModal = ({ closeModal }) => {
   const [cardNumberValid, setCardNumbeValid] = useState(true);
   const [cardCvvValid, setCvvValid] = useState(true);
 
-  const activeUser = JSON.parse(localStorage.getItem("activeUser"));
+  const activeUser = useSelector((state) => state.users.activeUser);
+  console.log(activeUser);
 
   const addCardHandler = (e) => {
     e.preventDefault();
@@ -53,7 +54,6 @@ const AddCardModal = ({ closeModal }) => {
         balance: cardBalanceRef.current.value,
       };
       const index = users.findIndex((e) => e.email === activeUser.email);
-      activeUser.cards.push(card);
       dispatch(addCard({ id: index, card: card }));
       closeModal();
     }
@@ -78,6 +78,7 @@ const AddCardModal = ({ closeModal }) => {
           <p className={`alert-text  ${cardNumberValid ? "hidden" : ""}`}>
             Enter Valid Card Number !
           </p>
+
           <label htmlFor="cvv" className="form-label">
             Card Cvv
           </label>
@@ -93,6 +94,7 @@ const AddCardModal = ({ closeModal }) => {
           <p className={`alert-text  ${cardCvvValid ? "hidden" : ""}`}>
             Enter Valid Cvv !
           </p>
+
           <label htmlFor="card-expiry-date" className="form-label">
             Card expiry
           </label>
@@ -106,8 +108,9 @@ const AddCardModal = ({ closeModal }) => {
           <label htmlFor="card-balance" className="form-label">
             Card Balance
           </label>
+
           <input
-            type="email"
+            type="number"
             className="form-control"
             id="card-balance"
             placeholder="Enter Balance"
@@ -116,10 +119,12 @@ const AddCardModal = ({ closeModal }) => {
           <p className={`alert-text  ${fieldsValid ? "hidden" : ""}`}>
             All Fields must be filled !
           </p>
-          <button onClick={closeModal}>Close</button>
-          <button className="add-card-btn" onClick={addCardHandler}>
-            Add Card
-          </button>
+          <div style={{ marginRight: "30px" }}>
+            <button onClick={closeModal}>Close</button>
+            <button className="add-card-btn-modal" onClick={addCardHandler}>
+              Add Card
+            </button>
+          </div>
         </form>
       </div>
     </>

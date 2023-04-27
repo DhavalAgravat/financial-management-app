@@ -1,13 +1,14 @@
 import React from "react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setLoggedIn } from "../store/userSlice";
 
 const Protected = (props) => {
+  const loggedIn = useSelector((state) => state.users.loggedIn);
   const { Component } = props;
   const navigate = useNavigate();
   useEffect(() => {
-    let loggedIn = localStorage.getItem("loggedIn");
     if (!loggedIn) {
       navigate("/");
     }

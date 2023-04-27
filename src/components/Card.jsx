@@ -1,16 +1,24 @@
 import React from "react";
-import "./Card.css";
+import "./styles/Card.css";
 
 const Card = ({ number, expiry }) => {
+  const expiryDate = expiry.slice(0, 7);
   return (
-    <div className="mt-3 bank-card">
-      <h4>Bank</h4> <p>| XYZ Banking</p>
-      <div className="d-flex justify-content-between">
+    <div className="bank-card">
+      <div className="d-flex bank-title">
+        <p className="bank-name">Bank </p>
+        <p className="bank-text"> | XYZ Banking</p>
+      </div>
+      <div className="d-flex justify-content-between bank-icons">
         <i className="fa-thin fa fa-microchip"></i>
         <i className="fa-thin fa fa-wifi"></i>
       </div>
       <p className="mt-3">{number}</p>
-      <p className="m-0">{expiry}</p>
+      <p className="m-0">{expiryDate}</p>
+
+      {/* <div className="d-flex justify-content-between">
+        <div></div>
+      </div> */}
     </div>
   );
 };

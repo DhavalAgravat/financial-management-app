@@ -1,0 +1,59 @@
+#login-container {
+  margin: 123px 177px;
+}
+
+.logo {
+  margin: 50px 177px 0px 177px;
+  font-family: "Gordita";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 26px;
+}
+
+.form-box {
+  width: 60%;
+}
+
+.welcome-text {
+  font-size: 30px;
+}
+
+.form-labels {
+  margin-bottom: 10px !important;
+  display: block;
+}
+
+.login-inputs {
+  padding: 15px 25px 16px 20px;
+  width: 82%;
+  border: 1px solid #f2f2f2;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.sign-in-btn {
+  margin-top: 20px;
+  width: 95%;
+  background: #c8ee44;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 25px 15px 20px;
+  border: none;
+}
+
+.signup-login-link {
+  margin-top: 25px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #929eae;
+}
+
+.link-text {
+  color: black;
+  text-decoration: none;
+  border-bottom: 2px solid #c8ee44;
+}

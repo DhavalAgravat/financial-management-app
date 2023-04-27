@@ -1,10 +1,11 @@
 import React from "react";
 import Card from "./Card";
 import { useState } from "react";
-import "./CardSlider.css";
+import { useSelector } from "react-redux";
+import "./styles/CardSlider.css";
 
 const CardSlider = () => {
-  const activeUser = JSON.parse(localStorage.getItem("activeUser"));
+  const activeUser = useSelector((state) => state.users.activeUser);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const handleNextClick = () => {
     setSelectedIndex((selectedIndex + 1) % activeUser.cards.length);
@@ -15,18 +16,18 @@ const CardSlider = () => {
       (selectedIndex - 1 + activeUser.cards.length) % activeUser.cards.length
     );
   };
-
+  const { number, expiryDate } = activeUser?.cards[selectedIndex];
   return (
     <div>
-      <div className="card-slider">
-        {activeUser.cards.map((card, index) => (
-          <div
-            key={card.number}
-            className={`card-item ${index === selectedIndex ? "active" : ""}`}
-          >
-            <Card number={card.number} expiry={card.expiryDate} />
-          </div>
-        ))}
+      <div>
+        <div className="card-item">
+          <Card
+            key={number}
+            className="active"
+            number={number}
+            expiry={expiryDate}
+          />
+        </div>
       </div>
       <div className="slider-buttons">
         <button onClick={handlePrevClick}>Prev</button>

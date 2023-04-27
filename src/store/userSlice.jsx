@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
-  name: "users",
+  name: "data",
   initialState: {
     users: [],
+    activeUser: {},
+    loggedIn: false,
   },
 
   reducers: {
@@ -13,10 +15,18 @@ const userSlice = createSlice({
     addCard(state, action) {
       const { id, card } = action.payload;
       state.users[id].cards.push(card);
+      state.activeUser?.cards?.push(card);
+    },
+    setLoggedIn(state, action) {
+      state.loggedIn = action.payload;
+    },
+    setActiveUser(state, action) {
+      state.activeUser = { ...action.payload };
     },
   },
 });
 
-export const { setUser, addCard } = userSlice.actions;
+export const { setUser, addCard, setLoggedIn, setActiveUser } =
+  userSlice.actions;
 
 export default userSlice.reducer;

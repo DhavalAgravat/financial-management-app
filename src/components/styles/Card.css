@@ -1,0 +1,30 @@
+.bank-card {
+  background-color: black;
+  color: whitesmoke;
+  padding: 25px;
+  border-radius: 20px;
+}
+
+.bank-title {
+  margin: 12px 0px;
+}
+
+.bank-name {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+  margin: 0;
+}
+
+.bank-text {
+  margin: 2px 0px 0px 10px;
+  font-weight: 500;
+  font-size: 14px;
+  /* line-height: 17px; */
+  color: #626260;
+}
+
+.bank-icons {
+  margin: 25px 0px;
+  font-size: 20px;
+}

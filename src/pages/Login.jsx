@@ -1,11 +1,14 @@
 import React from "react";
-import "./Login.css";
+import "./styles/Login.css";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setLoggedIn, setActiveUser } from "../store/userSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const navigate = useNavigate();
@@ -32,8 +35,8 @@ const Login = () => {
       setEmailValid(false);
       setPasswordValid(true);
     } else if (passwordRef.current.value === currentuser.password) {
-      localStorage.setItem("loggedIn", true);
-      localStorage.setItem("activeUser", JSON.stringify(currentuser));
+      dispatch(setLoggedIn(true));
+      dispatch(setActiveUser(currentuser));
       navigate("/dashboard");
     } else {
       setPasswordValid(false);
@@ -44,20 +47,20 @@ const Login = () => {
 
   return (
     <div className="row">
-      <div className="col-6">
+      <div className="col-5">
         <h1 className="logo"> Bank </h1>
         <section id="login-container">
           <div>
             <h3 className="welcome-text">Welcome Back</h3>
             <p>Welcome back please enter your Deatils</p>
           </div>
-          <form className="mt-4 form-box">
-            <label htmlFor="login-email" className="form-label">
+          <form className="form-box">
+            <label htmlFor="login-email" className="form-labels">
               Email
             </label>
             <input
               type="email"
-              className="form-control login-inputs"
+              className="login-inputs"
               id="login-email"
               placeholder="Enter Your email"
               ref={emailRef}
@@ -66,12 +69,12 @@ const Login = () => {
               Please enter valid email id!
             </p>
 
-            <label htmlFor="login-password" className="form-label">
+            <label htmlFor="login-password" className="form-labels">
               Password
             </label>
             <input
               type="password"
-              className="form-control login-inputs"
+              className="login-inputs"
               id="login-password"
               ref={passwordRef}
             ></input>
@@ -81,16 +84,20 @@ const Login = () => {
             <p className={`alert-text  ${fieldsValid ? "hidden" : ""}`}>
               All field must be filled !
             </p>
+
+            <button className="sign-in-btn" onClick={signInHandler}>
+              Sign in
+            </button>
+            <p className="signup-login-link">
+              Don't have an account ?{" "}
+              <Link to="/signin" className="link-text">
+                Sign Up For Free
+              </Link>
+            </p>
           </form>
-          <button className="sign-in-btn" onClick={signInHandler}>
-            Sign in
-          </button>
-          <p className="signup-link ms-5 mt-3">
-            Don't have an account ? <Link to="/signin">Sign Up For Free</Link>
-          </p>
         </section>
       </div>
-      <div className="col-6">kk</div>
+      <div className="col-5">kk</div>
     </div>
   );
 };

@@ -1,38 +1,39 @@
 import React from "react";
-import "./Sidebar.css";
+import "./styles/Sidebar.css";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setLoggedIn, setActiveUser } from "../store/userSlice";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   function logOutHandler() {
-    localStorage.removeItem("loggedIn");
-    localStorage.removeItem("activeUser");
+    dispatch(setLoggedIn(false));
+    dispatch(setActiveUser(""));
     navigate("/");
   }
   return (
     <div className="sidebar">
-      <h4 className="my-5 mx-2">Bank</h4>
-
-      <div className="main my-5 mx-2">
+      <h4 className="sidebar-logo">Bank</h4>
+      <div className="main">
         <div className="options1">
-          <ul className="p-0">
-            <li>
+          <ul>
+            <li className="nav-items">
               <NavLink to="/dashboard" className="nav-link">
                 Dashboard
               </NavLink>
             </li>
-            <li>
+            <li className="nav-items">
               <NavLink to="/transactions" className="nav-link">
                 Transactions
               </NavLink>
             </li>
-            <li>
+            <li className="nav-items">
               <NavLink to="/wallet" className="nav-link">
                 Wallet
               </NavLink>
             </li>
-            <li>
+            <li className="nav-items">
               <NavLink to="/profile" className="nav-link">
                 Profile
               </NavLink>
