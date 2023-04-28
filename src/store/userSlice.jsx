@@ -23,10 +23,25 @@ const userSlice = createSlice({
     setActiveUser(state, action) {
       state.activeUser = { ...action.payload };
     },
+    addTransaction(state, action) {
+      const { id, trans, cardNum } = action.payload;
+      state.users[id].transactions.push(trans);
+      state.activeUser?.transactions.push(trans);
+      state.users[id].cards.forEach((e) => {
+        if (e.number === cardNum) {
+          e.balance = Number(e.balance) + Number(trans.amount);
+        }
+        state.activeUser.cards.forEach((e) => {
+          if (e.number === cardNum) {
+            e.balance = Number(e.balance) + Number(trans.amount);
+          }
+        });
+      });
+    },
   },
 });
 
-export const { setUser, addCard, setLoggedIn, setActiveUser } =
+export const { setUser, addCard, setLoggedIn, setActiveUser, addTransaction } =
   userSlice.actions;
 
 export default userSlice.reducer;

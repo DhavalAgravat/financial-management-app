@@ -69,10 +69,6 @@
   border-radius: 10px;
 }
 
-.transactions-box h4 {
-  margin: 0;
-}
-
 .view-trans-link {
   font-weight: 600;
   font-size: 14px;
@@ -80,4 +76,14 @@
   text-align: right;
   color: #29a073;
   text-decoration: none;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.transactions-box h4 {
+  margin: 10px 0px 0px 10px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  color: #1b212d;
 }

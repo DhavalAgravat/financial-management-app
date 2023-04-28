@@ -29,8 +29,18 @@ th {
   margin-top: 20px;
 }
 
+.trans-table tbody {
+  margin-top: 30px !important;
+}
+
 .trans-table td {
-  color: black;
+  text-align: center;
+  padding: 20px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #1b212d;
+  border-bottom: 1px solid #f5f5f5;
 }
 
 .info-box {
@@ -38,4 +48,28 @@ th {
   padding: 4rem;
   border-radius: 10px;
   margin-top: 2rem;
+}
+
+.text-lightgrey {
+  color: #78778b !important;
+}
+
+.view-trans-btn {
+  align-items: center;
+  padding: 11px 20px 12px;
+  gap: 10px;
+  background: #c8ee44;
+  border-radius: 4px;
+  border: none;
+}
+
+.status-text span {
+  padding: 10px;
+  color: aliceblue;
+  background-color: #27ae60;
+}
+
+.expense-text span {
+  background-color: #f4c1c1;
+  color: black;
 }

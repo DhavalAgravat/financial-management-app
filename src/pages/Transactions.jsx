@@ -3,6 +3,7 @@ import Sidebar from "../components/Sidebar";
 import "./styles/Transactions.css";
 import Topbar from "../components/Topbar";
 import AddTransactionModal from "../components/AddTransactionModal";
+import TransactionsList from "../components/TransactionsList";
 
 const Transactions = () => {
   const [showModal, setShowModal] = useState(false);
@@ -27,24 +28,7 @@ const Transactions = () => {
         {showModal && <AddTransactionModal closeModal={closeModal} />}
         <div className="row">
           <div className="col-10">
-            <table className="trans-table mt-4">
-              <tr>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Status</th>
-                <th>View</th>
-              </tr>
-
-              {/* <tr>
-                <td>kfiufuifuh</td>
-                <td>kfiufuifuh</td>
-                <td>kfiufuifuh</td>
-                <td>kfiufuifuh</td>
-                <td>kfiufuifuh</td>
-              </tr> */}
-            </table>
+            <TransactionsList />
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ import CardSlider from "../components/CardSlider";
 import Info from "../components/Info";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import TransactionsList from "../components/TransactionsList";
 
 const Dashboard = () => {
   const activeUser = useSelector((state) => state.users.activeUser);
@@ -15,6 +16,14 @@ const Dashboard = () => {
     (total, e) => total + (Number(e.balance) ?? 0),
     0
   );
+
+  let spending = activeUser?.transactions
+    ?.filter((e) => e.status === "Expense")
+    .reduce((total, e) => total + e.amount, 0);
+
+  let savings = activeUser?.transactions
+    ?.filter((e) => e.status === "Income")
+    .reduce((total, e) => total + e.amount, 0);
 
   return (
     <div className="d-flex">
@@ -52,7 +61,7 @@ const Dashboard = () => {
                 </div>
                 <div>
                   <h6 className="ms-3">Total Spending</h6>
-                  <p className="amounts">${balance}</p>
+                  <p className="amounts">${-spending}</p>
                 </div>
               </div>
               <div className="balance-box" style={{ background: "#F8F8F8" }}>
@@ -64,15 +73,38 @@ const Dashboard = () => {
                 </div>
                 <div>
                   <h6 className="ms-3">Total Saved</h6>
-                  <p className="amounts">${balance}</p>
+                  <p className="amounts">${savings}</p>
                 </div>
               </div>
             </div>
-            <div className="row justify-content-between transactions-box">
-              <h4>Recent Transcations</h4>
-              <Link to="/transactions" className="view-trans-link">
-                View All <i class="fa-thin fa fa-arrow-right"></i>{" "}
-              </Link>
+            <div className="transactions-box">
+              <div className="row justify-content-between">
+                <h4>Recent Transcations</h4>
+                <Link to="/transactions" className="view-trans-link">
+                  View All <i class="fa-thin fa fa-arrow-right"></i>
+                </Link>
+              </div>
+              <table className="trans-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {activeUser?.transactions?.map((transaction, i) => (
+                    <tr key={i}>
+                      <td>{transaction.name}</td>
+                      <td className="text-lightgrey">{transaction.category}</td>
+                      <td>{transaction.date}</td>
+                      <td>{transaction.amount}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
           <div className="col-3">

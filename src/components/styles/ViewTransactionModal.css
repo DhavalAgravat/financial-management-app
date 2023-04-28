@@ -1,0 +1,20 @@
+.status-text-view-modal {
+  color: aliceblue;
+  background-color: #27ae60;
+}
+
+.expense-text-view-modal {
+  background-color: #f4c1c1;
+  color: black;
+}
+
+.view-trans-table {
+  width: 100%;
+  /* border: 1px solid #78778b; */
+  border-collapse: collapse;
+}
+
+.view-trans-table td {
+  border: 2px solid #d2cece;
+  padding: 10px;
+}

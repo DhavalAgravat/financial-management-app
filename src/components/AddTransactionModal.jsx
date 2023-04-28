@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles/AddTransactionModal.css";
 import { useFormik } from "formik";
+import { addTransaction } from "../store/userSlice";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import * as Yup from "yup";
 
@@ -25,21 +27,34 @@ const initialValues = {
 };
 
 const AddTransactionModal = ({ closeModal }) => {
+  const dispatch = useDispatch();
+  const [validAmount, setValildAmounts] = useState(true);
   const activeUser = useSelector((state) => state.users.activeUser);
+  const users = useSelector((state) => state.users.users);
 
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
       validationSchema: TransactionSchema,
       onSubmit: (values) => {
+        console.log(values.card);
         let card = activeUser.cards.find((e) => {
           if (e.number === values.card) {
             return e;
           }
         });
 
-        if (values.amount <= card.balance) {
-          console.log("working");
+        if (values.amount >= card.balance && values.status === "Expense") {
+          setValildAmounts(false);
+        } else {
+          if (values.status === "Expense") {
+            values.amount = -values.amount;
+          }
+          const index = users.findIndex((e) => e.email === activeUser.email);
+          dispatch(
+            addTransaction({ id: index, trans: values, cardNum: card.number })
+          );
+          closeModal();
         }
       },
     });
@@ -123,14 +138,23 @@ const AddTransactionModal = ({ closeModal }) => {
             onChange={handleChange}
             onBlur={handleBlur}
           >
-            {activeUser?.cards?.map((card) => (
-              <option key={card.id} value={card.number}>
+            <option value="" disabled>
+              Select a card
+            </option>
+            {activeUser?.cards?.map((card, i) => (
+              <option id={i} key={card.number} value={card.number}>
                 {card.number}
               </option>
             ))}
           </select>
           {errors.card && touched.card ? (
             <p className="alert-text">{errors.card}</p>
+          ) : null}
+
+          {!validAmount ? (
+            <p className="alert-text">
+              inSuffiecient Balance Choose Another Card
+            </p>
           ) : null}
 
           <label htmlFor="status">Select Status</label>
@@ -141,6 +165,9 @@ const AddTransactionModal = ({ closeModal }) => {
             onChange={handleChange}
             onBlur={handleBlur}
           >
+            <option value="" disabled>
+              Select a Type
+            </option>
             <option value="Income">Income</option>
             <option value="Expense">Expense</option>
           </select>
