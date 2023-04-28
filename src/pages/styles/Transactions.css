@@ -73,3 +73,8 @@ th {
   background-color: #f4c1c1;
   color: black;
 }
+
+.list-box {
+  max-height: 750px; /* set a maximum height to enable scrolling */
+  overflow-y: auto; /* add vertical scrollbar only when necessary */
+}

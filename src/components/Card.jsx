@@ -15,10 +15,6 @@ const Card = ({ number, expiry }) => {
       </div>
       <p className="mt-3">{number}</p>
       <p className="m-0">{expiryDate}</p>
-
-      {/* <div className="d-flex justify-content-between">
-        <div></div>
-      </div> */}
     </div>
   );
 };

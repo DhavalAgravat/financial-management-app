@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
   name: "data",
@@ -6,6 +6,7 @@ const userSlice = createSlice({
     users: [],
     activeUser: {},
     loggedIn: false,
+    currentCard: {},
   },
 
   reducers: {
@@ -38,10 +39,55 @@ const userSlice = createSlice({
         });
       });
     },
+    setCurrentCard(state, action) {
+      state.currentCard = { ...action.payload };
+    },
+    updateCard(state, action) {
+      const { cvv, expiry, id } = action.payload;
+      state.currentCard.cvv = cvv;
+      state.currentCard.expiryDate = expiry;
+
+      state.activeUser?.cards?.forEach((e) => {
+        if (e.number === state.currentCard.number) {
+          e.cvv = cvv;
+          e.expiryDate = expiry;
+        }
+      });
+
+      state.users[id]?.cards?.forEach((e) => {
+        if (e.number === state.currentCard.number) {
+          e.cvv = cvv;
+          e.expiryDate = expiry;
+        }
+      });
+    },
+    deleteCard(state, action) {
+      state.activeUser?.cards?.forEach((e, i) => {
+        if (e.number === state.currentCard.number) {
+          state.activeUser.cards.splice(i, 1);
+        }
+      });
+
+      state.users[action.payload]?.cards?.forEach((e, i) => {
+        if (e.number === state.currentCard.number) {
+          state.users[action.payload]?.cards.splice(i, 1);
+        }
+      });
+
+      state.currentCard = {};
+    },
   },
 });
 
-export const { setUser, addCard, setLoggedIn, setActiveUser, addTransaction } =
-  userSlice.actions;
+export const {
+  setUser,
+  addCard,
+  setLoggedIn,
+  setActiveUser,
+  addTransaction,
+  setCurrentCard,
+  updateCard,
+  deleteCard,
+} = userSlice.actions;
 
 export default userSlice.reducer;

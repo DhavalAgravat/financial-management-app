@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "./Card";
-import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setCurrentCard } from "../store/userSlice";
 import "./styles/CardSlider.css";
 
 const CardSlider = () => {
+  const dispatch = useDispatch();
   const activeUser = useSelector((state) => state.users.activeUser);
   const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    const card = activeUser?.cards[selectedIndex];
+    dispatch(setCurrentCard(card));
+  }, [selectedIndex, activeUser]);
+
   const handleNextClick = () => {
     setSelectedIndex((selectedIndex + 1) % activeUser.cards.length);
   };
@@ -16,7 +24,9 @@ const CardSlider = () => {
       (selectedIndex - 1 + activeUser.cards.length) % activeUser.cards.length
     );
   };
+
   const { number, expiryDate } = activeUser?.cards[selectedIndex];
+
   return (
     <div>
       <div>
@@ -37,4 +47,4 @@ const CardSlider = () => {
   );
 };
 
-export default CardSlider;
+export default React.memo(CardSlider);

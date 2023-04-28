@@ -19,7 +19,7 @@ const TransactionsList = () => {
   };
 
   return (
-    <>
+    <div className="list-box">
       {showModal ? (
         <ViewTransactionModal closeModal={closeModal} trans={trans} />
       ) : null}
@@ -64,7 +64,7 @@ const TransactionsList = () => {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

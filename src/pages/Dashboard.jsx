@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import "./styles/Dashboard.css";
-import Card from "../components/Card";
+
 import Topbar from "../components/Topbar";
-import { clearAllListeners } from "@reduxjs/toolkit";
+
 import CardSlider from "../components/CardSlider";
 import Info from "../components/Info";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import TransactionsList from "../components/TransactionsList";
 
 const Dashboard = () => {
   const activeUser = useSelector((state) => state.users.activeUser);
@@ -84,7 +83,7 @@ const Dashboard = () => {
                   View All <i class="fa-thin fa fa-arrow-right"></i>
                 </Link>
               </div>
-              <table className="trans-table">
+              <table className="trans-table-dashboard trans-table">
                 <thead>
                   <tr>
                     <th>Name</th>

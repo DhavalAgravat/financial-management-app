@@ -1,0 +1,23 @@
+.modal-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-container {
+  width: 40vw;
+  padding: 50px;
+  background-color: #fafafa;
+  border-radius: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.update-card-btn-modal {
+  background-color: #29a073 !important;
+}

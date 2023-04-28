@@ -63,7 +63,7 @@ const AddCardModal = ({ closeModal }) => {
       <div className="modal-overlay" onClick={closeModal}></div>
       <div className="modal-container">
         <h4>Add a Card</h4>
-        <form className="mt-4">
+        <form>
           <label htmlFor="card-number" className="form-label">
             Card Number
           </label>
